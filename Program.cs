@@ -1,5 +1,6 @@
 using System.Security.Cryptography.X509Certificates;
 using AirlineSeatReservationSystem.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +15,7 @@ var connectionString=config.GetConnectionString("database");
 options.UseNpgsql(connectionString);
 }
 );
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,6 +28,11 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseRouting(); //yeni eklendi
+app.UseAuthentication();
+app.UseAuthorization();
+
 
 app.UseRouting();
 

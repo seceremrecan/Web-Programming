@@ -13,80 +13,33 @@
     />
   </head>
   <body>
-    <!-- <header>
-      <nav class="nav-bar">
-        <ul id="navbar">
-          <li>
-            <a
-              class="nav-link"
-              asp-area=""
-              asp-controller="Home"
-              asp-action="Index"
-              >Sign up</a
-            >
-          </li>
-          <li>
-            <a
-              class="nav-link"
-              asp-area=""
-              asp-controller="Home"
-              asp-action="Privacy"
-              >Sign In</a
-            >
-          </li>
-          <li>
-            <a
-              class="nav-link"
-              asp-area=""
-              asp-controller="Home"
-              asp-action="Index"
-              >EN-INT</a
-            >
-          </li>
-        </ul>
-      </nav>
-    </header> -->
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
+      <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+        <div class="container">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" asp-controller="Users" asp-action="SignUp">Sign up</a>
                 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="SignUp">Sign up</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="SignIn">Sign In</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">EN-INT</a>
-                        </li>
-                       
-                    </ul>
-                </div>
-            </div>
-        </nav>
+              
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" asp-controller="Users" asp-action="SignIn">Sign In</a>
+                
+              
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" asp-controller="Home" asp-action="Privacy">EN-INT</a>
+                
+              
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
 
     <div class="container">
       <main role="main" class="pb-3">@RenderBody()</main>
     </div>
-
-    <script>
-      document.getElementById("navbar").addEventListener("click", function (e) {
-        var elems = document.querySelectorAll(".active");
-        if (elems.length) {
-          elems[0].classList.remove("active");
-        }
-        if (e.target.className == "nav-link") {
-          e.target.classList.add("active");
-        }
-      });
-    </script>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

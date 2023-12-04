@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AirlineSeatReservationSystem.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231203215703_InitialCreate")]
+    [Migration("20231204124426_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
