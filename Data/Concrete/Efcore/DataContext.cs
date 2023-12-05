@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using AirlineSeatReservationSystem.Entity;
 
-namespace AirlineSeatReservationSystem.Data
+namespace AirlineSeatReservationSystem.Data.Concrete.Efcore
 {
     public class DataContext : DbContext
     {

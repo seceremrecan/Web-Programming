@@ -1,8 +1,15 @@
+using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using AirlineSeatReservationSystem.Data;
+using AirlineSeatReservationSystem.Data.Concrete.Efcore;
+using AirlineSeatReservationSystem.Data.Abstract;
+using AirlineSeatReservationSystem.Entity;
+
 using AirlineSeatReservationSystem.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,36 +18,68 @@ namespace AirlineSeatReservationSystem.Controllers
 {
     public class UsersController : Controller
     {
-        private readonly DataContext _context;
-        public UsersController(DataContext context)
+        private IUsersRepository _userRepository;
+        public UsersController(IUsersRepository usersRepository)
         {
-            _context = context;
+            _userRepository = usersRepository;
         }
+
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Kullanici.ToListAsync());
+            return View(await _userRepository.Users.ToListAsync());
         }
         public IActionResult SignUp()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> SignUp(Users model)
+        public async Task<IActionResult> SignUp(SignUpViewModel model)
         {
-            _context.Kullanici.Add(model);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "Home");
+            if (ModelState.IsValid)
+            {
+                var user = await _userRepository.Users.FirstOrDefaultAsync(x => x.UserName == model.UserName || x.Email == model.Email);
+                if (user == null)
+                {
+                    _userRepository.CreateUser(new Users
+                    {
+                        UserName = model.UserName,
+                        Name = model.Name,
+                        Email = model.Email,
+                        Phone = model.Phone,
+                        Password = model.Password
+
+                    });
+                    
+                    return RedirectToAction("SignIn");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Email and password already exist");
+                }
+
+            }
+            return View(model);
+
         }
         public IActionResult SignIn()
         {
+            if (User.Identity!.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("SignIn");
         }
         [HttpPost]
         public async Task<IActionResult> SignIn(SignInViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var isUser = _context.Kullanici.FirstOrDefault(x => x.Email == model.Email && x.Password == model.Password);
+                var isUser = _userRepository.Users.FirstOrDefault(x => x.Email == model.Email && x.Password == model.Password);
                 if (isUser != null)
                 {
                     var useClaims = new List<Claim>();
@@ -72,5 +111,7 @@ namespace AirlineSeatReservationSystem.Controllers
 
             return View(model);
         }
+
+
     }
 }

@@ -1,5 +1,7 @@
 using System.Security.Cryptography.X509Certificates;
-using AirlineSeatReservationSystem.Data;
+using AirlineSeatReservationSystem.Data.Concrete.Efcore;
+using AirlineSeatReservationSystem.Data.Abstract;
+using AirlineSeatReservationSystem.Data.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +17,8 @@ var connectionString=config.GetConnectionString("database");
 options.UseNpgsql(connectionString);
 }
 );
+
+builder.Services.AddScoped<IUsersRepository,EfUsersRepository>(); // yeni geldi
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 var app = builder.Build();
 
