@@ -5,13 +5,10 @@ namespace AirlineSeatReservationSystem.Models
 {
         public class SignUpViewModel
         {
+
                 [Required]
                 [Display(Name = "UserName")]
                 public string? UserName { get; set; }
-
-                [Required]
-                [Display(Name = "Name")]
-                public string? Name { get; set; }
 
                 [Required]
                 [Display(Name = "Phone")]

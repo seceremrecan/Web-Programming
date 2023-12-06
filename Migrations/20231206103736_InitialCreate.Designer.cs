@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AirlineSeatReservationSystem.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231205113859_InitialCreate")]
+    [Migration("20231206103736_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,7 +24,7 @@ namespace AirlineSeatReservationSystem.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("AirlineSeatReservationSystem.Entity.Users", b =>
+            modelBuilder.Entity("AirlineSeatReservationSystem.Entity.User", b =>
                 {
                     b.Property<int>("UserNo")
                         .ValueGeneratedOnAdd()
@@ -33,9 +33,6 @@ namespace AirlineSeatReservationSystem.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UserNo"));
 
                     b.Property<string>("Email")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
                         .HasColumnType("text");
 
                     b.Property<string>("Password")

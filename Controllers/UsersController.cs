@@ -18,8 +18,8 @@ namespace AirlineSeatReservationSystem.Controllers
 {
     public class UsersController : Controller
     {
-        private IUsersRepository _userRepository;
-        public UsersController(IUsersRepository usersRepository)
+        private readonly IUserRepository _userRepository;
+        public UsersController(IUserRepository usersRepository)
         {
             _userRepository = usersRepository;
         }
@@ -40,16 +40,16 @@ namespace AirlineSeatReservationSystem.Controllers
                 var user = await _userRepository.Users.FirstOrDefaultAsync(x => x.UserName == model.UserName || x.Email == model.Email);
                 if (user == null)
                 {
-                    _userRepository.CreateUser(new Users
+                    _userRepository.CreateUser(new User
                     {
+                        
                         UserName = model.UserName,
-                        Name = model.Name,
-                        Email = model.Email,
                         Phone = model.Phone,
-                        Password = model.Password
+                        Email = model.Email,
+                        Password = model.Password,
 
                     });
-                    
+
                     return RedirectToAction("SignIn");
                 }
                 else

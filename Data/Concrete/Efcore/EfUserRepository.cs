@@ -4,18 +4,18 @@ using AirlineSeatReservationSystem.Data.Concrete.Efcore;
 
 namespace AirlineSeatReservationSystem.Data.Concrete
 {
-    public class EfUsersRepository : IUsersRepository
+    public class EfUserRepository : IUserRepository
     {
 
         private DataContext _context;
-        public EfUsersRepository(DataContext context)
+        public EfUserRepository(DataContext context)
         {
             _context = context;
         }
-        public IQueryable<Users> Users => _context.Kullanici;
-        public void CreateUser(Users user)
+        public IQueryable<User> Users => _context.Users;
+        public void CreateUser(User user)
         {
-            _context.Kullanici.Add(user);
+            _context.Users.Add(user);
             _context.SaveChanges();
         }
     }

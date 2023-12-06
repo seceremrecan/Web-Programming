@@ -2,11 +2,11 @@ using AirlineSeatReservationSystem.Entity;
 
 namespace  AirlineSeatReservationSystem.Data.Abstract
 {
-    public interface IUsersRepository
+    public interface IUserRepository
     {
-        IQueryable<Users> Users {get;}
+        IQueryable<User> Users {get;}
 
-        void CreateUser(Users user);
+        void CreateUser(User user);
 
     }
 }

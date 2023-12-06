@@ -10,15 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<DataContext>(options=>{
-    
-var config=builder.Configuration;
-var connectionString=config.GetConnectionString("database");
-options.UseNpgsql(connectionString);
+builder.Services.AddDbContext<DataContext>(options =>
+{
+
+
+    options.UseNpgsql(builder.Configuration["ConnectionStrings:database"]);
 }
 );
 
-builder.Services.AddScoped<IUsersRepository,EfUsersRepository>(); // yeni geldi
+builder.Services.AddScoped<IUserRepository, EfUserRepository>(); // yeni geldi
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 var app = builder.Build();
 

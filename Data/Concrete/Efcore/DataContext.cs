@@ -9,6 +9,6 @@ namespace AirlineSeatReservationSystem.Data.Concrete.Efcore
         {
 
         }
-        public DbSet<Users> Kullanici => Set<Users>();
+        public DbSet<User> Users => Set<User>();
     }
 }
