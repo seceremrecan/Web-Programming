@@ -5,12 +5,20 @@
       "PackagePath": "staticwebassets\\AirlineSeatReservationSystem.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\secer\\OneDrive\\Masaüstü\\9294238244\\3-Güz\\Web Programlama\\Web_Programming\\AirlineSeatReservationSystem\\wwwroot\\css\\home.css",
+      "PackagePath": "staticwebassets\\css\\home.css"
+    },
+    {
       "Id": "C:\\Users\\secer\\OneDrive\\Masaüstü\\9294238244\\3-Güz\\Web Programlama\\Web_Programming\\AirlineSeatReservationSystem\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "C:\\Users\\secer\\OneDrive\\Masaüstü\\9294238244\\3-Güz\\Web Programlama\\Web_Programming\\AirlineSeatReservationSystem\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\secer\\OneDrive\\Masaüstü\\9294238244\\3-Güz\\Web Programlama\\Web_Programming\\AirlineSeatReservationSystem\\wwwroot\\img\\Airplane.jpg",
+      "PackagePath": "staticwebassets\\img\\Airplane.jpg"
     },
     {
       "Id": "C:\\Users\\secer\\OneDrive\\Masaüstü\\9294238244\\3-Güz\\Web Programlama\\Web_Programming\\AirlineSeatReservationSystem\\wwwroot\\js\\site.js",

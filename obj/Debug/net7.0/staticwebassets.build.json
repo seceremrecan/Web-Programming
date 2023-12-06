@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VJjCG/EvIiTOQTZIzHIAfNS4uNHGZW2UuLD2shtUz1A=",
+  "Hash": "c2X0DgFJtEIv5qR2OOLCT7kthLw6hTKg0ecUucPLREs=",
   "Source": "AirlineSeatReservationSystem",
   "BasePath": "_content/AirlineSeatReservationSystem",
   "Mode": "Default",
@@ -51,6 +51,23 @@
       "OriginalItemSpec": "C:\\Users\\secer\\OneDrive\\Masaüstü\\9294238244\\3-Güz\\Web Programlama\\Web_Programming\\AirlineSeatReservationSystem\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\AirlineSeatReservationSystem.bundle.scp.css"
     },
     {
+      "Identity": "C:\\Users\\secer\\OneDrive\\Masaüstü\\9294238244\\3-Güz\\Web Programlama\\Web_Programming\\AirlineSeatReservationSystem\\wwwroot\\css\\home.css",
+      "SourceId": "AirlineSeatReservationSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\secer\\OneDrive\\Masaüstü\\9294238244\\3-Güz\\Web Programlama\\Web_Programming\\AirlineSeatReservationSystem\\wwwroot\\",
+      "BasePath": "_content/AirlineSeatReservationSystem",
+      "RelativePath": "css/home.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\home.css"
+    },
+    {
       "Identity": "C:\\Users\\secer\\OneDrive\\Masaüstü\\9294238244\\3-Güz\\Web Programlama\\Web_Programming\\AirlineSeatReservationSystem\\wwwroot\\css\\site.css",
       "SourceId": "AirlineSeatReservationSystem",
       "SourceType": "Discovered",
@@ -83,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\secer\\OneDrive\\Masaüstü\\9294238244\\3-Güz\\Web Programlama\\Web_Programming\\AirlineSeatReservationSystem\\wwwroot\\img\\Airplane.jpg",
+      "SourceId": "AirlineSeatReservationSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\secer\\OneDrive\\Masaüstü\\9294238244\\3-Güz\\Web Programlama\\Web_Programming\\AirlineSeatReservationSystem\\wwwroot\\",
+      "BasePath": "_content/AirlineSeatReservationSystem",
+      "RelativePath": "img/Airplane.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\Airplane.jpg"
     },
     {
       "Identity": "C:\\Users\\secer\\OneDrive\\Masaüstü\\9294238244\\3-Güz\\Web Programlama\\Web_Programming\\AirlineSeatReservationSystem\\wwwroot\\js\\site.js",

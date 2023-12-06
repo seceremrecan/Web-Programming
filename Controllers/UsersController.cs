@@ -18,6 +18,8 @@ namespace AirlineSeatReservationSystem.Controllers
 {
     public class UsersController : Controller
     {
+
+        
         private readonly IUserRepository _userRepository;
         public UsersController(IUserRepository usersRepository)
         {
