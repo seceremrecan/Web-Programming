@@ -20,6 +20,10 @@
             @if(User.Identity!.IsAuthenticated)
               {
                 <li class="nav-item">
+                  <a class="nav-link"  asp-controller="Home" asp-action="Index">Home</a>
+                    
+                </li>
+                <li class="nav-item">
               
                   <a href="" class="nav-link">@User.Identity.Name</a>
                 </li>
@@ -29,7 +33,11 @@
               }else
               {
                 <li class="nav-item">
-                  <a class="nav-link" asp-controller="Users" asp-action="SignUp">Sign up</a>
+                  <a class="nav-link"  asp-controller="Home" asp-action="Index">Home</a>
+                    
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link"  asp-controller="Users" asp-action="SignUp">Sign up</a>
                     
                 </li>
                 <li class="nav-item">
@@ -39,9 +47,15 @@
               }
             
             <li class="nav-item">
-              <a class="nav-link" asp-controller="Home" asp-action="Privacy">EN-INT</a>
-                
               
+              <select  class="form-select " aria-label="Default select example">
+                <option selected value="" value="1"><a class="nav-link" language="english" asp-controller="Home" asp-action="Privacy">TR</a></option>
+                <option value="2"><a class="nav-link" language="english" asp-controller="Home" asp-action="Privacy">EN</a></option>
+                <option value="3"><a class="nav-link" language="english" asp-controller="Home" asp-action="Privacy">FR</a>
+
+                </option>
+            </select>
+                
             </li>
           </ul>
         </div>
