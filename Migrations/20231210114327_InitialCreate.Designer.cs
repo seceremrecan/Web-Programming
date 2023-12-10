@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AirlineSeatReservationSystem.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231206103736_InitialCreate")]
+    [Migration("20231210114327_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -23,6 +23,37 @@ namespace AirlineSeatReservationSystem.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("AirlineSeatReservationSystem.Entity.Flight", b =>
+                {
+                    b.Property<int>("FLightId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("FLightId"));
+
+                    b.Property<string>("Depart")
+                        .HasColumnType("text");
+
+                    b.Property<string>("From")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Guest")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Return")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Time")
+                        .HasColumnType("text");
+
+                    b.Property<string>("To")
+                        .HasColumnType("text");
+
+                    b.HasKey("FLightId");
+
+                    b.ToTable("Flights");
+                });
 
             modelBuilder.Entity("AirlineSeatReservationSystem.Entity.User", b =>
                 {

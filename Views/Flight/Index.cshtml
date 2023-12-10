@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model FlightViewModel
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -13,7 +14,7 @@
   </head>
   <body>
     <div class="container">
-      <form action="Search" method="post">
+      <form action="Flight" method="post">
         <div class="position-relative">
           <img
             src="~/img/Airplane.jpg"
@@ -24,7 +25,7 @@
           <div
             class="d-none d-xl-block position-absolute start-50 top-50 translate-middle"
           >
-            <div>
+            <!-- <div>
               <form action="/Home/" method="post">
                 <button type="submit" class="btn btn-danger fw-bold">
                   Flights
@@ -33,7 +34,7 @@
                   Check in
                 </button>
               </form>
-            </div>
+            </div> -->
             <div
               class="rounded p-3 bg-cp"
               style="margin-bottom: 40%; width: 1080px"
@@ -68,23 +69,23 @@
               </div>
               <div class="d-flex align-items-center py-2">
                 <div>
-                  <label
-                    for="exampleDataList"
-                    class="form-label fw-bold fs-8 m-0"
-                    >From</label
-                  >
-                  <input
-                    class="form-control inp-height inp-width"
-                    list="datalistOptions"
+                  <label asp-for="From" class="form-label fw-bold fs-8 m-0"
+                    >From</label>
+                  
+
+                  <select
+                    class="form-select inp-height inp-width"
+                    aria-label="Default select example"
+                    asp-for="From"
                     id="from"
-                    placeholder="From"
-                  />
-                  <datalist id="datalistOptions">
-                    <option value="Istanbul"></option>
-                    <option value="Ankara"></option>
-                    <option value="Sakarya"></option>
-                    <option value="Kirsehir"></option>
-                  </datalist>
+                  >
+                    <option value="Ankara">Ankara</option>
+                    <option value="Istanbul">Istanbul</option>
+                    <option value="Denizli">Denizli</option>
+                    <option value="Kırşehir">Kırşehir</option>
+                  </select>
+
+                 
                 </div>
 
                 <button
@@ -97,22 +98,22 @@
 
                 <div>
                   <label
-                    for="exampleDataList1"
+                    asp-for="To"
                     class="form-label fw-bold fs-8 m-0"
-                    >To</label
+                    >To</label>
+                  
+                  <select
+                    class="form-select inp-height inp-width"
+                    aria-label="Default select example"
+                    asp-for="To"
+                    id="from"
                   >
-                  <input
-                    class="form-control inp-height inp-width"
-                    list="datalistOptions1"
-                    id="to"
-                    placeholder="To"
-                  />
-                  <datalist id="datalistOptions1">
-                    <option value="Istanbul"></option>
-                    <option value="Ankara"></option>
-                    <option value="Sakarya"></option>
-                    <option value="Denizli"></option>
-                  </datalist>
+                    <option value="Ankara">Ankara</option>
+                    <option value="Istanbul">Istanbul</option>
+                    <option value="Denizli">Denizli</option>
+                    <option value="Kırşehir">Kırşehir</option>
+                  </select>
+                  
                 </div>
 
                 <div>
@@ -122,6 +123,7 @@
                     name=""
                     id=""
                     class="form-control inp-height"
+                    asp-for="Depart"
                   />
                 </div>
 
@@ -132,6 +134,7 @@
                     name=""
                     id=""
                     class="form-control inp-height"
+                    asp-for="Return"
                   />
                 </div>
 
@@ -140,6 +143,7 @@
                   <select
                     class="form-select inp-height inp-width"
                     aria-label="Default select example"
+                    asp-for="Guest"
                   >
                     <option selected value="" value="1">Adult</option>
                     <option value="2">Child(2-12 age)</option>

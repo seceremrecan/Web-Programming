@@ -12,6 +12,24 @@ namespace AirlineSeatReservationSystem.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Flights",
+                columns: table => new
+                {
+                    FLightId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    From = table.Column<string>(type: "text", nullable: true),
+                    To = table.Column<string>(type: "text", nullable: true),
+                    Depart = table.Column<string>(type: "text", nullable: true),
+                    Return = table.Column<string>(type: "text", nullable: true),
+                    Time = table.Column<string>(type: "text", nullable: true),
+                    Guest = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Flights", x => x.FLightId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -31,6 +49,9 @@ namespace AirlineSeatReservationSystem.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Flights");
+
             migrationBuilder.DropTable(
                 name: "Users");
         }

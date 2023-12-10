@@ -16,12 +16,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = c:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem
 build_property._RazorSourceGeneratorDebug = 
 
-[c:/Users/secer/OneDrive/Masaüstü/9294238244/3-Güz/Web Programlama/Web_Programming/AirlineSeatReservationSystem/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[c:/Users/secer/OneDrive/Masaüstü/9294238244/3-Güz/Web Programlama/Web_Programming/AirlineSeatReservationSystem/Views/Flight/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmxpZ2h0XENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/secer/OneDrive/Masaüstü/9294238244/3-Güz/Web Programlama/Web_Programming/AirlineSeatReservationSystem/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[c:/Users/secer/OneDrive/Masaüstü/9294238244/3-Güz/Web Programlama/Web_Programming/AirlineSeatReservationSystem/Views/Flight/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmxpZ2h0XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [c:/Users/secer/OneDrive/Masaüstü/9294238244/3-Güz/Web Programlama/Web_Programming/AirlineSeatReservationSystem/Views/Shared/Error.cshtml]

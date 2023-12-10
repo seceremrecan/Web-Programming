@@ -21,6 +21,37 @@ namespace AirlineSeatReservationSystem.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("AirlineSeatReservationSystem.Entity.Flight", b =>
+                {
+                    b.Property<int>("FLightId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("FLightId"));
+
+                    b.Property<string>("Depart")
+                        .HasColumnType("text");
+
+                    b.Property<string>("From")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Guest")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Return")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Time")
+                        .HasColumnType("text");
+
+                    b.Property<string>("To")
+                        .HasColumnType("text");
+
+                    b.HasKey("FLightId");
+
+                    b.ToTable("Flights");
+                });
+
             modelBuilder.Entity("AirlineSeatReservationSystem.Entity.User", b =>
                 {
                     b.Property<int>("UserNo")
