@@ -23,11 +23,11 @@ namespace AirlineSeatReservationSystem.Migrations
 
             modelBuilder.Entity("AirlineSeatReservationSystem.Entity.Flight", b =>
                 {
-                    b.Property<int>("FLightId")
+                    b.Property<int>("FlightId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("FLightId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("FlightId"));
 
                     b.Property<string>("Depart")
                         .HasColumnType("text");
@@ -47,7 +47,7 @@ namespace AirlineSeatReservationSystem.Migrations
                     b.Property<string>("To")
                         .HasColumnType("text");
 
-                    b.HasKey("FLightId");
+                    b.HasKey("FlightId");
 
                     b.ToTable("Flights");
                 });

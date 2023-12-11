@@ -15,7 +15,7 @@ namespace AirlineSeatReservationSystem.Migrations
                 name: "Flights",
                 columns: table => new
                 {
-                    FLightId = table.Column<int>(type: "integer", nullable: false)
+                    FlightId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     From = table.Column<string>(type: "text", nullable: true),
                     To = table.Column<string>(type: "text", nullable: true),
@@ -26,7 +26,7 @@ namespace AirlineSeatReservationSystem.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Flights", x => x.FLightId);
+                    table.PrimaryKey("PK_Flights", x => x.FlightId);
                 });
 
             migrationBuilder.CreateTable(

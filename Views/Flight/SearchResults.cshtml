@@ -1,0 +1,13 @@
+
+// SearchResults.cshtml
+@model IEnumerable<AirlineSeatReservationSystem.Entity.Flight>
+    @foreach (var flight in Model)
+    {
+        <div>
+            <p>From: @flight.From</p>
+            <p>To: @flight.To</p>
+            <p>Time: @flight.Time</p>
+            <!-- Diğer bilgiler -->
+        </div>
+    }
+    
