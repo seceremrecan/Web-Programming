@@ -4,6 +4,7 @@ namespace AirlineSeatReservationSystem.Models
 {
     public class FlightCreateViewModel
     {
+        public int FlightId { get; set; }
             [Required]
             [Display(Name = "From")]
             public string? From { get; set; }
@@ -16,7 +17,7 @@ namespace AirlineSeatReservationSystem.Models
             [Required]
             [Display(Name = "Return")]
             public string? Return  { get; set; }
-            [Required]
+            
             [Display(Name = "Time")]
             public string? Time  { get; set; }
             [Required]

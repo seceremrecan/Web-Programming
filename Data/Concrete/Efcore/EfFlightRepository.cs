@@ -13,6 +13,19 @@ namespace AirlineSeatReservationSystem.Data.Concrete
             _context = context;
         }
         public IQueryable<Flight> Flights => _context.Flights;
+
+        public void editFlight(Flight Flight)
+        {
+            var entity=_context.Flights.FirstOrDefault(i=>i.FlightId==Flight.FlightId);
+            if(entity!=null)
+            {
+                entity.From=Flight.From;
+                entity.To=Flight.To;
+                entity.Time=Flight.Time;
+                _context.SaveChanges();
+            }
+        }
+
         public void getFlight(Flight Flight)
         {
             _context.Flights.Add(Flight);

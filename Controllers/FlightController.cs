@@ -77,26 +77,29 @@ public class FlightController : Controller
         }
         return View();
     }
-
+    
 
     public async Task<IActionResult> SearchFlights(FlightViewModel model)
     {
+
         if (ModelState.IsValid)
         {
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
             var flights = await _repository.Flights
                 .Where(f => f.From == model.From && f.To == model.To
                             && f.Depart == model.Depart && f.Return == model.Return
                             && f.Guest == model.Guest)
                 .Select(flightEntity => new FlightCreateViewModel
                 {
-                    // Örnek olarak, FlightCreateViewModel içindeki property'lere Flight entity'sinden değer atıyoruz.
+
                     From = flightEntity.From,
                     To = flightEntity.To,
-                    Depart = flightEntity.Depart, // Flight entity'nizdeki string tipindeki Depart, FlightCreateViewModel içinde DateTime tipindeyse dönüşüm yapılır
-                    Return = flightEntity.Return, // Aynı şekilde dönüşüm
-                    Time = flightEntity.Time, // Eğer Time string tipindeyse direkt atama yapılır
+                    Depart = flightEntity.Depart,
+                    Return = flightEntity.Return,
+                    Time = flightEntity.Time,
+
                     Guest = flightEntity.Guest,
-                    // FlightCreateViewModel içindeki diğer property'ler de burada doldurulmalı
+
                 })
                 .ToListAsync();
 
@@ -105,6 +108,42 @@ public class FlightController : Controller
 
         return View("Index", model);
     }
-
+    [Authorize(Roles = "admin")]
+    public IActionResult Edit()
+    {
+        // if(id==null)
+        // {
+        //     return NotFound();
+        // }
+        // var flight=_repository.Flights.FirstOrDefault(i=> i.FlightId==id);
+        // if(flight==null)
+        // {
+        //     return NotFound();
+        // }
+        // return View(new FlightCreateViewModel
+        // {
+        //     FlightId=flight.FlightId,
+        //     From=flight.From,
+        //     To=flight.To,
+        //     Time=flight.Time
+        // });
+        return View();
+    }
+    [Authorize(Roles = "admin")]
+    [HttpPost]
+    public IActionResult Edit(FlightCreateViewModel model)
+    {
+       if(ModelState.IsValid)
+       {
+        var entityToUpdate=new Flight{
+            From=model.From,
+            To=model.To,
+            Time=model.Time
+        };
+        _repository.editFlight(entityToUpdate);
+        return RedirectToAction("SearchResults");
+       }
+       return View(model);
+    }
 
 }
