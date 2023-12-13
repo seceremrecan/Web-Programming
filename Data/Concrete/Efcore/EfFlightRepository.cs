@@ -14,14 +14,24 @@ namespace AirlineSeatReservationSystem.Data.Concrete
         }
         public IQueryable<Flight> Flights => _context.Flights;
 
+        public async Task DeleteFlight(Flight flight)
+        {
+            _context.Flights.Remove(flight);
+            await _context.SaveChangesAsync(); // Asenkron kaydetme
+        }
+
+
         public void editFlight(Flight Flight)
         {
-            var entity=_context.Flights.FirstOrDefault(i=>i.FlightId==Flight.FlightId);
-            if(entity!=null)
+            var entity = _context.Flights.FirstOrDefault(i => i.FlightId == Flight.FlightId);
+            if (entity != null)
             {
-                entity.From=Flight.From;
-                entity.To=Flight.To;
-                entity.Time=Flight.Time;
+                entity.From = Flight.From;
+                entity.To = Flight.To;
+                entity.Depart = Flight.Depart;
+                entity.Return = Flight.Return;
+                entity.Time = Flight.Time;
+                entity.Guest = Flight.Guest;
                 _context.SaveChanges();
             }
         }
@@ -31,6 +41,6 @@ namespace AirlineSeatReservationSystem.Data.Concrete
             _context.Flights.Add(Flight);
             _context.SaveChanges();
         }
-        
+
     }
 }

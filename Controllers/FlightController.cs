@@ -73,11 +73,11 @@ public class FlightController : Controller
 
                 }
             );
-            return RedirectToAction("Index");
+            return RedirectToAction("ListFlights");
         }
         return View();
     }
-    
+
 
     public async Task<IActionResult> SearchFlights(FlightViewModel model)
     {
@@ -108,42 +108,100 @@ public class FlightController : Controller
 
         return View("Index", model);
     }
+
+
+
+
     [Authorize(Roles = "admin")]
-    public IActionResult Edit()
+    public async Task<IActionResult> ListFlights()
     {
-        // if(id==null)
-        // {
-        //     return NotFound();
-        // }
-        // var flight=_repository.Flights.FirstOrDefault(i=> i.FlightId==id);
-        // if(flight==null)
-        // {
-        //     return NotFound();
-        // }
-        // return View(new FlightCreateViewModel
-        // {
-        //     FlightId=flight.FlightId,
-        //     From=flight.From,
-        //     To=flight.To,
-        //     Time=flight.Time
-        // });
-        return View();
+        var flights = await _repository.Flights
+            .Select(flightEntity => new FlightCreateViewModel
+            {
+                FlightId = flightEntity.FlightId,
+                From = flightEntity.From,
+                To = flightEntity.To,
+                Time = flightEntity.Time
+                // Burada diğer gerekli alanları da ekleyebilirsiniz
+            })
+            .ToListAsync();
+
+        return View("SearchResults", flights);
     }
+
+    [Authorize(Roles = "admin")]
+    public IActionResult Edit(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+        var ucus = _repository.Flights.FirstOrDefault(i => i.FlightId == id);
+        if (ucus == null)
+        {
+            return NotFound();
+        }
+
+
+        return View(new FlightCreateViewModel
+        {
+            FlightId = ucus.FlightId,
+            From = ucus.From,
+            To = ucus.To,
+            Depart = ucus.Depart,
+            Return = ucus.Return,
+            Time = ucus.Time,
+            Guest = ucus.Guest
+
+
+        });
+    }
+
+
     [Authorize(Roles = "admin")]
     [HttpPost]
     public IActionResult Edit(FlightCreateViewModel model)
     {
-       if(ModelState.IsValid)
-       {
-        var entityToUpdate=new Flight{
-            From=model.From,
-            To=model.To,
-            Time=model.Time
-        };
-        _repository.editFlight(entityToUpdate);
-        return RedirectToAction("SearchResults");
-       }
-       return View(model);
+        if (ModelState.IsValid)
+        {
+            var entityToUpdate = new Flight
+            {
+                FlightId = model.FlightId,
+                From = model.From,
+                To = model.To,
+                Depart = model.Depart,
+                Return = model.Return,
+                Time = model.Time,
+                Guest = model.Guest
+
+            };
+            _repository.editFlight(entityToUpdate);
+            return RedirectToAction("ListFlights");
+        }
+        return View();
     }
+
+
+
+    [Authorize(Roles = "admin")]
+    [HttpPost]
+    public async Task<IActionResult> Delete(int? flightId)
+    {
+        if (flightId == null)
+        {
+            return NotFound(); // Uçuş ID'si sağlanmadıysa, 404 hatası döndür
+        }
+
+        var flight = await _repository.Flights.FirstOrDefaultAsync(f => f.FlightId == flightId.Value);
+        if (flight == null)
+        {
+            return NotFound(); // Uçuş bulunamadıysa, 404 hatası döndür
+        }
+
+        await _repository.DeleteFlight(flight); // DeleteFlight metodunu asenkron hale getirin
+        return RedirectToAction("ListFlights"); // Uçuş silindikten sonra, uçuş listesine yönlendir
+    }
+
+
 
 }

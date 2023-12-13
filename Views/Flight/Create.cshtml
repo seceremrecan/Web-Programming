@@ -9,13 +9,35 @@
 
       <div class="mb-3">
         <label asp-for="From" class="form-label"></label>
-        <input asp-for="From" class="form-control" />
+        <select
+          class="form-select inp-height inp-width"
+          aria-label="Default select example"
+          asp-for="From"
+          name="From"
+          id="from"
+        >
+          <option value="Ankara">Ankara</option>
+          <option value="Istanbul">Istanbul</option>
+          <option value="Denizli">Denizli</option>
+          <option value="Kırşehir">Kırşehir</option>
+        </select>
         <span asp-validation-for="From" class="text-danger"></span>
       </div>
 
       <div class="mb-3">
         <label asp-for="To" class="form-label"></label>
-        <input asp-for="To" class="form-control" />
+        <select
+          class="form-select inp-height inp-width"
+          aria-label="Default select example"
+          asp-for="To"
+          name="To"
+          id="to"
+        >
+          <option value="Ankara">Ankara</option>
+          <option value="Istanbul">Istanbul</option>
+          <option value="Denizli">Denizli</option>
+          <option value="Kırşehir">Kırşehir</option>
+        </select>
         <span asp-validation-for="To" class="text-danger"></span>
       </div>
 
@@ -32,7 +54,7 @@
       </div>
       <div class="mb-3">
         <label asp-for="Time" class="form-label"></label>
-        <input asp-for="Time" class="form-control" />
+        <input type="time" asp-for="Time" class="form-control" />
         <span asp-validation-for="Time" class="text-danger"></span>
       </div>
 

@@ -17,19 +17,29 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @if (!Model.Any()) {
+                  @if (!Model.Any())
+                  {
                   <p>No flights found.</p>
-                  } else { foreach (var flight in Model) {
+                  } else {
+                     foreach (var flight in Model)
+                    {
                   <tr>
+                    
                     <td>@flight.From</td>
                     <td>@flight.To</td>
                     <td>@flight.Time</td>
                     <td>
-                        <a href="/Flight/Edit" class="btn btn-sm btn-primary">Edit</a>
-                        <a href="" class="btn btn-sm btn-danger">Delete</a>
+                        <a href="/Flight/Edit/@flight.FlightId" class="btn btn-sm btn-primary">Edit</a>
+                        <form asp-action="Delete" method="post" onsubmit="return confirm('emin misiniz?')" style="display: inline-block;">
+                          <input type="hidden" name="FlightId" value="@flight.FlightId">
+                          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+
+                        </form>
+                        <!-- <a href="/Flight/Delete/@flight.FlightId" class="btn btn-sm btn-danger">Delete</a> -->
                     </td>
                   </tr>
-                  } }
+                  }
+                 }
                 </tbody>
               </table>
             </div>
@@ -65,4 +75,5 @@
               </table>
             </div>
           </div>
+          
     }

@@ -7,5 +7,8 @@ namespace  AirlineSeatReservationSystem.Data.Abstract
 
         void getFlight(Flight Flight);
         void editFlight(Flight Flight);
+
+        Task DeleteFlight(Flight flight);
+
     }
 }
