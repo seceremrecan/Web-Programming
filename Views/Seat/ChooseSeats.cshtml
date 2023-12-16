@@ -1,0 +1,10 @@
+@model ChooseSeatsViewModel
+
+<form asp-action="ChooseSeats" method="post">
+    @foreach (var seat in Model.Seats)
+    {
+        <input type="radio" name="SelectedSeat" value="@seat.SeatId" id="seat-@seat.SeatNumber" />
+        <label for="seat-@seat.SeatNumber">Koltuk @seat.SeatNumber</label>
+    }
+    <button type="submit">Koltuk Seç</button>
+</form>
