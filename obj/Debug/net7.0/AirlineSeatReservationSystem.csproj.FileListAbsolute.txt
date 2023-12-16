@@ -1,11 +1,10 @@
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\AirlineSeatReservationSystem.dll
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\appsettings.json
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\AirlineSeatReservationSystem.staticwebassets.runtime.json
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\AirlineSeatReservationSystem.exe
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\AirlineSeatReservationSystem.deps.json
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\AirlineSeatReservationSystem.runtimeconfig.json
-C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\AirlineSeatReservationSystem.dll
-C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\AirlineSeatReservationSystem.pdb
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\Humanizer.dll
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -39,4 +38,5 @@ C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Program
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\obj\Debug\net7.0\refint\AirlineSeatReservationSystem.dll
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\obj\Debug\net7.0\AirlineSeatReservationSystem.pdb
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\obj\Debug\net7.0\AirlineSeatReservationSystem.genruntimeconfig.cache
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\AirlineSeatReservationSystem.pdb
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\obj\Debug\net7.0\ref\AirlineSeatReservationSystem.dll

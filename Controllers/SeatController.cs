@@ -32,6 +32,13 @@ namespace AirlineSeatReservationSystem.Controllers
 
         public IActionResult ChooseSeats(int flightId)
         {
+            var flightExists = _context.Flights.Any(f => f.FlightId == flightId);
+            if (!flightExists)
+            {
+                // Uçuş yoksa, uygun bir hata mesajı gönderin.
+                return NotFound(flightId);
+            }
+
             var seats = _context.Seats.Where(s => s.FlightId == flightId).ToList();
             // Eğer hiç koltuk yoksa, varsayılan olarak 20 koltuk oluşturun ve veritabanına ekleyin
             if (!seats.Any())
@@ -66,8 +73,8 @@ namespace AirlineSeatReservationSystem.Controllers
         {
             await _seatRepository.ReserveSeat(model.SelectedSeat);
 
-            // TempData["SuccessMessage"] = "Koltuk başarıyla rezerve edildi.";
-            return RedirectToAction("Index"); // Ana sayfaya yönlendir
+            TempData["SuccessMessage"] = "Uçuşunuz başarılı bir şekilde oluşturuldu.";
+            return RedirectToAction("Index", "Flight"); // Ana sayfaya yönlendir
         }
 
 

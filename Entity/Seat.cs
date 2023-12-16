@@ -10,7 +10,7 @@ public class Seat
     [Key]
     public int SeatId { get; set; }
 
-    // [ForeignKey("Flight")]
+    [ForeignKey("Flight")]
     public int FlightId { get; set; } // Hangi uçuşa ait olduğunu gösterir
 
     public bool IsOccupied { get; set; } // Koltuğun dolu olup olmadığını belirtir

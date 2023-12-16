@@ -71,11 +71,7 @@
             <td>
               
 
-              <a
-                href="/Seat/ChooseSeats/@flight.FlightId"
-                class="btn btn-sm btn-primary"
-                >Choose Seat</a
-              >
+              <a href="@Url.Action("ChooseSeats", "Seat", new { flightId = flight.FlightId })" class="btn btn-sm btn-primary">Choose Seat</a>
             </td>
           </tr>
           } }
