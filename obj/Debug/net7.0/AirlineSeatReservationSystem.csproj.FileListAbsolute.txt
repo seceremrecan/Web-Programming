@@ -40,3 +40,4 @@ C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Program
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\obj\Debug\net7.0\AirlineSeatReservationSystem.genruntimeconfig.cache
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\AirlineSeatReservationSystem.pdb
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\obj\Debug\net7.0\ref\AirlineSeatReservationSystem.dll
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\System.Security.Permissions.dll

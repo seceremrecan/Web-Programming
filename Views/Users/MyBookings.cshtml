@@ -1,0 +1,21 @@
+@model MyBookingsViewModel
+
+<h2>My Bookings</h2>
+
+<table>
+    <tr>
+        <th>Flight</th>
+        <th>Seat</th>
+        <th>Date</th>
+        <th></th>
+    </tr>
+    @foreach(var booking in Model.Bookings)
+    {
+        <tr>
+            <td>@booking.Flight.FlightId</td>
+            <td>@booking.Seat.SeatNumber</td>
+            <td>@booking.BookingDate.ToString("dd/MM/yyyy")</td>
+            <td><a href="@Url.Action("EditBooking", "Users", new { id = booking.BookingId })">Edit</a></td>
+        </tr>
+    }
+</table>

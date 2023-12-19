@@ -20,10 +20,13 @@ namespace AirlineSeatReservationSystem.Controllers
     public class UsersController : Controller
     {
 
-        
+        private readonly IBookingRepository _bookingRepository;
+
         private readonly IUserRepository _userRepository;
-        public UsersController(IUserRepository usersRepository)
+        public UsersController(IBookingRepository bookingRepository, IUserRepository usersRepository)
         {
+            _bookingRepository = bookingRepository;
+
             _userRepository = usersRepository;
         }
 
@@ -47,7 +50,7 @@ namespace AirlineSeatReservationSystem.Controllers
                 {
                     _userRepository.CreateUser(new User
                     {
-                        
+
                         UserName = model.UserName,
                         Phone = model.Phone,
                         Email = model.Email,
@@ -117,6 +120,29 @@ namespace AirlineSeatReservationSystem.Controllers
             return View(model);
         }
 
+        public IActionResult MyBookings()
+    {
+        // Oturumda giriş yapmış kullanıcının ID'sini al
+        var userIdClaim = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
+        if (userIdClaim == null)
+        {
+            // Kullanıcı giriş yapmamışsa veya ID claim'i bulunamıyorsa, hata döndür veya uygun bir sayfaya yönlendir
+            return RedirectToAction("Index", "Flight"); // Örnek bir yönlendirme
+        }
 
+        var userId = int.Parse(userIdClaim.Value); // Claim'den alınan değeri int'e çevir
+
+        // Kullanıcının rezervasyonlarını repository'den al
+        var bookingsList = _bookingRepository.GetBookingsByUserId(userId);
+
+        // ViewModel'i oluştur ve rezervasyon listesini ata
+        var viewModel = new MyBookingsViewModel
+        {
+            Bookings = bookingsList
+        };
+
+        // ViewModel'i görünüme gönder
+        return View(viewModel);
+    }
     }
 }
