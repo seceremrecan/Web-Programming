@@ -21,13 +21,18 @@ namespace AirlineSeatReservationSystem.Controllers
     {
 
         private readonly IBookingRepository _bookingRepository;
+        private readonly ISeatRepository _seatRepository;
 
         private readonly IUserRepository _userRepository;
-        public UsersController(IBookingRepository bookingRepository, IUserRepository usersRepository)
+        private readonly IFlightRepository _flightRepository;
+        public UsersController(IBookingRepository bookingRepository, IUserRepository usersRepository, IFlightRepository flightRepository, ISeatRepository seatRepository)
         {
             _bookingRepository = bookingRepository;
 
             _userRepository = usersRepository;
+            _flightRepository = flightRepository;
+
+            _seatRepository = seatRepository;
         }
 
         public async Task<IActionResult> Index()
@@ -119,40 +124,7 @@ namespace AirlineSeatReservationSystem.Controllers
 
             return View(model);
         }
-
-        // POST: /Booking/BookSeat
         
-        public IActionResult BookSeat (int flightId, int seatId)
-        {
-            // Oturumdan kullanıcı ID'sini al (örneğin User.Identity.GetUserId() ile)
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (userIdClaim != null)
-            {
-                var userNo = int.Parse(userIdClaim.Value); // Claim'den alınan değeri int'e çevir
-
-                // Yeni bir Booking nesnesi oluştur
-                var booking = new Booking
-                {
-                    UserNo = userNo,
-                    FlightId = flightId,
-                    SeatId = seatId,
-                    BookingDate = DateTime.UtcNow // Mevcut UTC zamanı kullan
-                };
-
-                // Booking nesnesini veritabanına ekle ve değişiklikleri kaydet
-                _bookingRepository.Add(booking);
-                _bookingRepository.SaveChanges();
-
-                // Başarılı bir yanıt döndür
-                return Json(new { success = true });
-            }
-            else
-            {
-                // Kullanıcı ID'si bulunamadıysa bir hata mesajı döndür
-                return Json(new { success = false, message = "User not authenticated." });
-            }
-        }
-
 
     }
 }

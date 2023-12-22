@@ -1,12 +1,11 @@
 @model MyBookingsViewModel
 
-<h2>My Bookings</h2>
-
+<h2 class="text-white py-3">My Bookings</h2>
+<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" /> 
 @if (Model.Bookings.Any()) {
 <div class="row">
   <div class="col-12 py-5">
-    <br />
-
+    <br/>
     <table class="table table-bordered table-dark">
       <thead>
         <tr>
