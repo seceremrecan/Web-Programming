@@ -2,20 +2,39 @@
 
 <h2>My Bookings</h2>
 
-<table>
-    <tr>
-        <th>Flight</th>
-        <th>Seat</th>
-        <th>Date</th>
-        <th></th>
-    </tr>
-    @foreach(var booking in Model.Bookings)
-    {
+@if (Model.Bookings.Any()) {
+<div class="row">
+  <div class="col-12 py-5">
+    <br />
+
+    <table class="table table-bordered table-dark">
+      <thead>
         <tr>
-            <td>@booking.Flight.FlightId</td>
-            <td>@booking.Seat.SeatNumber</td>
-            <td>@booking.BookingDate.ToString("dd/MM/yyyy")</td>
-            <td><a href="@Url.Action("EditBooking", "Users", new { id = booking.BookingId })">Edit</a></td>
+          <th>From</th>
+          <th>To</th>
+          <th>Departure Time</th>
+          <th>Departure Date</th>
+          <th>Return Date</th>
+          <th>Seat Number</th>
         </tr>
-    }
-</table>
+      </thead>
+
+      <tbody>
+        @foreach(var booking in Model.Bookings) {
+        <tr>
+          <td>@booking.Flight.From</td>
+          <td>@booking.Flight.To</td>
+          <td>@booking.Flight.Time</td>
+          <td>@booking.Flight.Depart</td>
+          <td>@booking.Flight.Return</td>
+          <td>@booking.Seat.SeatNumber</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+} else {
+<p>No bookings found.</p>
+}

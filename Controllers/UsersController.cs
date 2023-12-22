@@ -120,29 +120,39 @@ namespace AirlineSeatReservationSystem.Controllers
             return View(model);
         }
 
-        public IActionResult MyBookings()
-    {
-        // Oturumda giriş yapmış kullanıcının ID'sini al
-        var userIdClaim = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
-        if (userIdClaim == null)
+        // POST: /Booking/BookSeat
+        
+        public IActionResult BookSeat (int flightId, int seatId)
         {
-            // Kullanıcı giriş yapmamışsa veya ID claim'i bulunamıyorsa, hata döndür veya uygun bir sayfaya yönlendir
-            return RedirectToAction("Index", "Flight"); // Örnek bir yönlendirme
+            // Oturumdan kullanıcı ID'sini al (örneğin User.Identity.GetUserId() ile)
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim != null)
+            {
+                var userNo = int.Parse(userIdClaim.Value); // Claim'den alınan değeri int'e çevir
+
+                // Yeni bir Booking nesnesi oluştur
+                var booking = new Booking
+                {
+                    UserNo = userNo,
+                    FlightId = flightId,
+                    SeatId = seatId,
+                    BookingDate = DateTime.UtcNow // Mevcut UTC zamanı kullan
+                };
+
+                // Booking nesnesini veritabanına ekle ve değişiklikleri kaydet
+                _bookingRepository.Add(booking);
+                _bookingRepository.SaveChanges();
+
+                // Başarılı bir yanıt döndür
+                return Json(new { success = true });
+            }
+            else
+            {
+                // Kullanıcı ID'si bulunamadıysa bir hata mesajı döndür
+                return Json(new { success = false, message = "User not authenticated." });
+            }
         }
 
-        var userId = int.Parse(userIdClaim.Value); // Claim'den alınan değeri int'e çevir
 
-        // Kullanıcının rezervasyonlarını repository'den al
-        var bookingsList = _bookingRepository.GetBookingsByUserId(userId);
-
-        // ViewModel'i oluştur ve rezervasyon listesini ata
-        var viewModel = new MyBookingsViewModel
-        {
-            Bookings = bookingsList
-        };
-
-        // ViewModel'i görünüme gönder
-        return View(viewModel);
-    }
     }
 }

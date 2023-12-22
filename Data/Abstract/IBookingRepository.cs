@@ -5,7 +5,9 @@ namespace  AirlineSeatReservationSystem.Data.Abstract
     {
         IQueryable<Booking> Bookings {get;}
 
-            IEnumerable<Booking> GetBookingsByUserId(int userId);
+            IQueryable<Booking> GetBookingsByUserId(int userId);
+            void Add(Booking booking);
+    void SaveChanges();
 
 
     }

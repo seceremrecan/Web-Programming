@@ -17,13 +17,22 @@ namespace AirlineSeatReservationSystem.Data.Concrete
 
         public IQueryable<Booking> Bookings => context.Bookings;
 
-        public IEnumerable<Booking> GetBookingsByUserId(int userId)
+        public IQueryable<Booking> GetBookingsByUserId(int userId)
         {
             return context.Bookings
-                          .Where(b => b.UserNo == userId)
-                          .Include(b => b.Flight) // Eğer Flight bilgilerine ihtiyacınız varsa
-                          .Include(b => b.Seat)   // Eğer Seat bilgilerine ihtiyacınız varsa
-                          .ToList();
+                           .Where(b => b.UserNo == userId)
+                           .Include(b => b.Flight)
+                           .Include(b => b.Seat)
+                           .AsQueryable();
+        }
+        public void Add(Booking booking)
+        {
+            context.Bookings.Add(booking);
+        }
+
+        public void SaveChanges()
+        {
+            context.SaveChanges();
         }
 
     }

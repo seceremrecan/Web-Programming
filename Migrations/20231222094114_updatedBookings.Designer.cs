@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AirlineSeatReservationSystem.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231219115131_AddBookingTable")]
-    partial class AddBookingTable
+    [Migration("20231222094114_updatedBookings")]
+    partial class updatedBookings
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
