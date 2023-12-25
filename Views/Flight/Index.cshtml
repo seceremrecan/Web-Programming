@@ -58,7 +58,7 @@
               </div>
 
               <div class="col-auto ">
-                <button class="btn btn-white p-2 mt-4 " id="swapButton" onclick="swapValues()">
+                <button class="btn btn-white p-2 mt-4 " id="swapButton" onclick="swapValues(event)">
                   <i class="fa-solid fa-arrow-right-arrow-left"></i>
                 </button>
               </div> 
@@ -115,13 +115,17 @@
   </div>
 
   <script>
-    function swapValues() {
-      var from = document.getElementById("from").value;
-      var to = document.getElementById("to").value;
+    function swapValues(event) {
+      event.preventDefault();
+   // Formun gönderilmesini engelle
+  var from = document.getElementById("from").value;
+  var to = document.getElementById("to").value;
+  
 
-      document.getElementById("from").value = to;
-      document.getElementById("to").value = from;
-    }
+  document.getElementById("from").value = to;
+  document.getElementById("to").value = from;
+}
+
 
     // Return tarih seçiminin devre dışı bırakılmasını veya etkinleştirilmesini kontrol eden fonksiyon
     function toggleReturnDate(isOneWay) {

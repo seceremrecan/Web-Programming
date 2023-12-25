@@ -32,6 +32,7 @@ namespace AirlineSeatReservationSystem.Controllers
             _context = context;
             _repository = repository;
         }
+   [Authorize]
 
         public IActionResult ChooseSeats(int flightId)
         {
@@ -70,6 +71,7 @@ namespace AirlineSeatReservationSystem.Controllers
         }
 
 
+   [Authorize]
 
         [HttpPost]
         public async Task<IActionResult> ChooseSeats(ChooseSeatsViewModel model, int flightId)

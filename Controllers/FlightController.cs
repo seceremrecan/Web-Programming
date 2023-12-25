@@ -80,7 +80,6 @@ public class FlightController : Controller
         return View();
     }
 
-   [Authorize]
 public async Task<IActionResult> SearchFlights(FlightViewModel model)
 {
   

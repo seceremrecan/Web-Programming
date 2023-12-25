@@ -41,3 +41,11 @@ C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Program
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\AirlineSeatReservationSystem.pdb
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\obj\Debug\net7.0\ref\AirlineSeatReservationSystem.dll
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\System.Security.Permissions.dll
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
