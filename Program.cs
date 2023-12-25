@@ -5,6 +5,9 @@ using AirlineSeatReservationSystem.Data.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,9 +23,12 @@ builder.Services.AddDbContext<DataContext>(options =>
 }
 );
 
+
+
 builder.Services.AddScoped<IUserRepository, EfUserRepository>(); // yeni geldi
 builder.Services.AddScoped<ISeatRepository, EfSeatRepository>();
 builder.Services.AddScoped<IBookingRepository, EfBookingRepository>();
+
 
 
 // builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options=>{
@@ -30,6 +36,22 @@ builder.Services.AddScoped<IBookingRepository, EfBookingRepository>();
 // });
 builder.Services.AddScoped<IFlightRepository, EfFlightRepository>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
+// builder.Services.AddAuthentication(options =>
+// {
+//     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+// })
+// .AddJwtBearer(options =>
+// {
+//     options.TokenValidationParameters = new TokenValidationParameters
+//     {
+//         ValidateIssuerSigningKey = true,
+//         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+//         ValidateIssuer = false,
+//         ValidateAudience = false
+//     };
+// });
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

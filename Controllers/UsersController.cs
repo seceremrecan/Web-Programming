@@ -98,55 +98,112 @@ namespace AirlineSeatReservationSystem.Controllers
             return RedirectToAction("SignIn");
         }
         [HttpPost]
-public async Task<IActionResult> SignIn(SignInViewModel model)
-{
-    if (ModelState.IsValid)
-    {
-        var user = await _userRepository.Users.FirstOrDefaultAsync(x => x.Email == model.Email);
-        if (user != null)
+        public async Task<IActionResult> SignIn(SignInViewModel model)
         {
-            // Admin yetkisi kontrolü
-            bool isAdmin = (user.Email == "g211210013@sakarya.edu.tr" || user.Email == "g201210093@sakarya.edu.tr") 
-                           && _userRepository.VerifyPassword("sau", user.Password);
-
-            // Kullanıcı veya admin için şifre doğrulaması
-            if ((isAdmin && _userRepository.VerifyPassword("sau", user.Password)) || 
-                (!isAdmin && _userRepository.VerifyPassword(model.Password, user.Password)))
+            if (ModelState.IsValid)
             {
-                var userClaims = new List<Claim>
+                var user = await _userRepository.Users.FirstOrDefaultAsync(x => x.Email == model.Email);
+                if (user != null)
+                {
+                    // Admin yetkisi kontrolü
+                    bool isAdmin = (user.Email == "g211210013@sakarya.edu.tr" || user.Email == "g201210093@sakarya.edu.tr")
+                                   && _userRepository.VerifyPassword("sau", user.Password);
+
+                    // Kullanıcı veya admin için şifre doğrulaması
+                    if ((isAdmin && _userRepository.VerifyPassword("sau", user.Password)) ||
+                        (!isAdmin && _userRepository.VerifyPassword(model.Password, user.Password)))
+                    {
+                        var userClaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier, user.UserNo.ToString()),
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(ClaimTypes.Email, user.Email)
                 };
 
-                if (isAdmin)
-                {
-                    userClaims.Add(new Claim(ClaimTypes.Role, "admin"));
+                        if (isAdmin)
+                        {
+                            userClaims.Add(new Claim(ClaimTypes.Role, "admin"));
+                        }
+
+                        var claimsIdentity = new ClaimsIdentity(userClaims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var authProperties = new AuthenticationProperties
+                        {
+                            IsPersistent = true
+                        };
+
+                        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                        await HttpContext.SignInAsync(
+                            CookieAuthenticationDefaults.AuthenticationScheme,
+                            new ClaimsPrincipal(claimsIdentity),
+                            authProperties
+                        );
+
+
+                        return RedirectToAction("Index", "Flight");
+                    }
                 }
 
-                var claimsIdentity = new ClaimsIdentity(userClaims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var authProperties = new AuthenticationProperties
-                {
-                    IsPersistent = true
-                };
-
-                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-                await HttpContext.SignInAsync(
-                    CookieAuthenticationDefaults.AuthenticationScheme,
-                    new ClaimsPrincipal(claimsIdentity),
-                    authProperties
-                );
-
-                return RedirectToAction("Index", "Flight");
+                ModelState.AddModelError("", "Email or password is incorrect");
             }
+
+            return View(model);
         }
 
-        ModelState.AddModelError("", "Email or password is incorrect");
-    }
+        // [HttpPost]
+        // public async Task<IActionResult> SignIn(SignInViewModel model)
+        // {
+        //     if (ModelState.IsValid)
+        //     {
+        //         var user = await _userRepository.Users.FirstOrDefaultAsync(x => x.Email == model.Email);
+        //         if (user != null)
+        //         {
+        //             // Admin yetkisi kontrolü
+        //             bool isAdmin = (user.Email == "g211210013@sakarya.edu.tr" || user.Email == "g201210093@sakarya.edu.tr") 
+        //                            && _userRepository.VerifyPassword("sau", user.Password);
 
-    return View(model);
-}
+        //             // Kullanıcı veya admin için şifre doğrulaması
+        //             if ((isAdmin && _userRepository.VerifyPassword("sau", user.Password)) || 
+        //                 (!isAdmin && _userRepository.VerifyPassword(model.Password, user.Password)))
+        //             {
+        //                 // JWT token oluşturma
+        //                 var tokenHandler = new JwtSecurityTokenHandler();
+        //                 var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
+        //                 var tokenDescriptor = new SecurityTokenDescriptor
+        //                 {
+        //                     Subject = new ClaimsIdentity(new[]
+        //                     {
+        //                         new Claim(ClaimTypes.NameIdentifier, user.UserNo.ToString()),
+        //                         new Claim(ClaimTypes.Name, user.UserName),
+        //                         new Claim(ClaimTypes.Email, user.Email),
+        //                         new Claim(ClaimTypes.Role, isAdmin ? "admin" : "user") // Rol bilgisini token'a ekleyin
+        //                     }),
+        //                     Expires = DateTime.UtcNow.AddHours(2),
+        //                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+        //                 };
+
+        //                 var token = tokenHandler.CreateToken(tokenDescriptor);
+        //                 var tokenString = tokenHandler.WriteToken(token);
+
+        //                 // Kullanıcıya token'ı ve rol bilgisini JSON olarak döndür
+        //                 return Json(new { token = tokenString, role = isAdmin ? "admin" : "user" });
+        //             }
+        //             else
+        //             {
+        //                 ModelState.AddModelError("", "Invalid login attempt.");
+        //             }
+        //         }
+        //         else
+        //         {
+        //             ModelState.AddModelError("", "User not found.");
+        //         }
+        //     }
+
+        //     // Eğer model geçersizse veya giriş başarısızsa, modeli ile birlikte view'ı döndür
+        //     return View(model);
+        // }
+
+
+
 
 
 
