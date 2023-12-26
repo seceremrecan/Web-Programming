@@ -87,19 +87,19 @@ namespace AirlineSeatReservationSystem.Controllers
             return NoContent();
         }
         [AllowAnonymous]
-[HttpPost("GenerateToken")]
-public async Task<IActionResult> GenerateToken([FromBody] SignInViewModel model)
-{
-    if (ModelState.IsValid)
-    {
-        var user = await _userRepository.Users.FirstOrDefaultAsync(x => x.Email == model.Email);
-        if (user != null && _userRepository.VerifyPassword(model.Password, user.Password))
+        [HttpPost("GenerateToken")]
+        public async Task<IActionResult> GenerateToken([FromBody] SignInViewModel model)
         {
-            // Admin kontrolü
-            var isAdmin = (user.Email == "g211210013@sakarya.edu.tr");
+            if (ModelState.IsValid)
+            {
+                var user = await _userRepository.Users.FirstOrDefaultAsync(x => x.Email == model.Email);
+                if (user != null && _userRepository.VerifyPassword(model.Password, user.Password))
+                {
+                    // Admin kontrolü
+                    var isAdmin = (user.Email == "g211210013@sakarya.edu.tr");
 
-            // Claims listesi oluşturuluyor
-            var claims = new List<Claim>
+                    // Claims listesi oluşturuluyor
+                    var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.UserNo.ToString()),
                 new Claim(ClaimTypes.Name, user.UserName),
@@ -107,35 +107,33 @@ public async Task<IActionResult> GenerateToken([FromBody] SignInViewModel model)
                 new Claim(ClaimTypes.Role, isAdmin ? "admin" : "user")
             };
 
-            // JWT token için gerekli anahtar ve credentials
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expiry = DateTime.Now.AddDays(Convert.ToInt32(_configuration["Jwt:ExpiryInDays"]));
+                    // JWT token için gerekli anahtar ve credentials
+                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+                    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                    var expiry = DateTime.Now.AddDays(Convert.ToInt32(_configuration["Jwt:ExpiryInDays"]));
 
-            // JWT token oluşturuluyor
-            var token = new JwtSecurityToken(
-                claims: claims,
-                expires: expiry,
-                signingCredentials: creds
-            );
+                    // JWT token oluşturuluyor
+                    var token = new JwtSecurityToken(
+                        claims: claims,
+                        expires: expiry,
+                        signingCredentials: creds
+                    );
 
-            // Token ve rol bilgisini içeren bir nesne döndürülüyor
-            return Ok(new 
-            {
-                token = new JwtSecurityTokenHandler().WriteToken(token),
-                role = isAdmin ? "admin" : "user"
-            });
+                    // Token ve rol bilgisini içeren bir nesne döndürülüyor
+                    return Ok(new
+                    {
+                        token = new JwtSecurityTokenHandler().WriteToken(token),
+                        role = isAdmin ? "admin" : "user"
+                    });
+                }
+                else
+                {
+                    return Unauthorized();
+                }
+            }
+
+            return BadRequest("Could not create token");
         }
-        else
-        {
-            return Unauthorized();
-        }
-    }
-
-    return BadRequest("Could not create token");
-}
-
-
 
 
     }

@@ -49,3 +49,12 @@ C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Program
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\en-US\AirlineSeatReservationSystem.resources.dll
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\bin\Debug\net7.0\tr-TR\AirlineSeatReservationSystem.resources.dll
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\obj\Debug\net7.0\AirlineSeatReservationSystem.Resources.SharedResource.en-US.resources
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\obj\Debug\net7.0\AirlineSeatReservationSystem.Resources.SharedResource.tr-TR.resources
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\obj\Debug\net7.0\AirlineSeatReservationSystem.csproj.GenerateResource.cache
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\obj\Debug\net7.0\en-US\AirlineSeatReservationSystem.resources.cs
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\obj\Debug\net7.0\en-US\AirlineSeatReservationSystem.resources.dll
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\obj\Debug\net7.0\tr-TR\AirlineSeatReservationSystem.resources.cs
+C:\Users\secer\OneDrive\Masaüstü\9294238244\3-Güz\Web Programlama\Web_Programming\AirlineSeatReservationSystem\obj\Debug\net7.0\tr-TR\AirlineSeatReservationSystem.resources.dll

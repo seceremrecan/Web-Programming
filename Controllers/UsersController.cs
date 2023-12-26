@@ -16,6 +16,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using AirlineSeatReservationSystem.Services;
+using Microsoft.AspNetCore.Localization;
 
 
 namespace AirlineSeatReservationSystem.Controllers
@@ -25,6 +27,9 @@ namespace AirlineSeatReservationSystem.Controllers
 
         private readonly IBookingRepository _bookingRepository;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<UsersController> _logger;
+
+        private readonly LanguageService _localization;
 
         private readonly ISeatRepository _seatRepository;
 
@@ -33,7 +38,7 @@ namespace AirlineSeatReservationSystem.Controllers
 
         public object HashHelper { get; private set; }
 
-        public UsersController(IBookingRepository bookingRepository, IUserRepository usersRepository, IFlightRepository flightRepository, ISeatRepository seatRepository, IConfiguration configuration)
+        public UsersController(IBookingRepository bookingRepository, IUserRepository usersRepository, IFlightRepository flightRepository, ISeatRepository seatRepository, IConfiguration configuration, ILogger<UsersController> logger, LanguageService localization)
         {
             _bookingRepository = bookingRepository;
 
@@ -42,11 +47,34 @@ namespace AirlineSeatReservationSystem.Controllers
             _configuration = configuration;
 
             _seatRepository = seatRepository;
+            _logger = logger;
+            _localization = localization;
         }
 
         public async Task<IActionResult> Index()
         {
+            ViewBag.UserName = _localization.Getkey("UserName").Value;
+            ViewBag.Phone = _localization.Getkey("Phone").Value;
+            ViewBag.Password = _localization.Getkey("Password").Value;
+            ViewBag.Repeat = _localization.Getkey("Repeat").Value;
+            ViewBag.SignIn = _localization.Getkey("Login").Value;
+            ViewBag.SignIn = _localization.Getkey("Sign Up").Value;
+
+
+
+
+            var currentCulture = Thread.CurrentThread.CurrentCulture.Name;
             return View(await _userRepository.Users.ToListAsync());
+        }
+        public IActionResult ChangeLanguage(string culture)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+            new CookieOptions()
+            {
+                Expires = DateTimeOffset.UtcNow.AddYears(1)
+
+            });
+            return Redirect(Request.Headers["Referer"].ToString());
         }
         // [Authorize]
         public IActionResult SignUp()
@@ -148,63 +176,6 @@ namespace AirlineSeatReservationSystem.Controllers
 
             return View(model);
         }
-        
-
-        // [HttpPost]
-        // public async Task<IActionResult> SignIn(SignInViewModel model)
-        // {
-        //     if (ModelState.IsValid)
-        //     {
-        //         var user = await _userRepository.Users.FirstOrDefaultAsync(x => x.Email == model.Email);
-        //         if (user != null)
-        //         {
-        //             // Admin yetkisi kontrolü
-        //             bool isAdmin = (user.Email == "g211210013@sakarya.edu.tr" || user.Email == "g201210093@sakarya.edu.tr") 
-        //                            && _userRepository.VerifyPassword("sau", user.Password);
-
-        //             // Kullanıcı veya admin için şifre doğrulaması
-        //             if ((isAdmin && _userRepository.VerifyPassword("sau", user.Password)) || 
-        //                 (!isAdmin && _userRepository.VerifyPassword(model.Password, user.Password)))
-        //             {
-        //                 // JWT token oluşturma
-        //                 var tokenHandler = new JwtSecurityTokenHandler();
-        //                 var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
-        //                 var tokenDescriptor = new SecurityTokenDescriptor
-        //                 {
-        //                     Subject = new ClaimsIdentity(new[]
-        //                     {
-        //                         new Claim(ClaimTypes.NameIdentifier, user.UserNo.ToString()),
-        //                         new Claim(ClaimTypes.Name, user.UserName),
-        //                         new Claim(ClaimTypes.Email, user.Email),
-        //                         new Claim(ClaimTypes.Role, isAdmin ? "admin" : "user") // Rol bilgisini token'a ekleyin
-        //                     }),
-        //                     Expires = DateTime.UtcNow.AddHours(2),
-        //                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-        //                 };
-
-        //                 var token = tokenHandler.CreateToken(tokenDescriptor);
-        //                 var tokenString = tokenHandler.WriteToken(token);
-
-        //                 // Kullanıcıya token'ı ve rol bilgisini JSON olarak döndür
-        //                 return Json(new { token = tokenString, role = isAdmin ? "admin" : "user" });
-        //             }
-        //             else
-        //             {
-        //                 ModelState.AddModelError("", "Invalid login attempt.");
-        //             }
-        //         }
-        //         else
-        //         {
-        //             ModelState.AddModelError("", "User not found.");
-        //         }
-        //     }
-
-        //     // Eğer model geçersizse veya giriş başarısızsa, modeli ile birlikte view'ı döndür
-        //     return View(model);
-        // }
-
-
-
 
 
 
