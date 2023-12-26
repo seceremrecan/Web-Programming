@@ -16,12 +16,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace AirlineSeatReservationSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(Roles = "admin")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class FlightApiController : ControllerBase
     {
         private readonly IConfiguration _configuration;
@@ -84,45 +86,55 @@ namespace AirlineSeatReservationSystem.Controllers
             await _repository.DeleteFlight(flightToDelete);
             return NoContent();
         }
+        [AllowAnonymous]
+[HttpPost("GenerateToken")]
+public async Task<IActionResult> GenerateToken([FromBody] SignInViewModel model)
+{
+    if (ModelState.IsValid)
+    {
+        var user = await _userRepository.Users.FirstOrDefaultAsync(x => x.Email == model.Email);
+        if (user != null && _userRepository.VerifyPassword(model.Password, user.Password))
+        {
+            // Admin kontrolü
+            var isAdmin = (user.Email == "g211210013@sakarya.edu.tr");
 
-        // [HttpPost("api/token")]
-        // public async Task<IActionResult> GenerateToken([FromBody] SignInViewModel model)
-        // {
-        //     if (ModelState.IsValid)
-        //     {
-        //         var user = await _userRepository.Users.FirstOrDefaultAsync(x => x.Email == model.Email);
-        //         if (user != null && _userRepository.VerifyPassword(model.Password, user.Password))
-        //         {
-        //             var isAdmin = (user.Email == "g211210013@sakarya.edu.tr"); // Admin kontrolü
+            // Claims listesi oluşturuluyor
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.UserNo.ToString()),
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, isAdmin ? "admin" : "user")
+            };
 
-        //             var claims = new List<Claim>
-        //     {
-        //         new Claim(ClaimTypes.NameIdentifier, user.UserNo.ToString()),
-        //         new Claim(ClaimTypes.Name, user.UserName),
-        //         new Claim(ClaimTypes.Email, user.Email),
-        //         new Claim(ClaimTypes.Role, isAdmin ? "admin" : "user")
-        //     };
+            // JWT token için gerekli anahtar ve credentials
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var expiry = DateTime.Now.AddDays(Convert.ToInt32(_configuration["Jwt:ExpiryInDays"]));
 
-        //             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-        //             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-        //             var expiry = DateTime.Now.AddDays(Convert.ToInt32(_configuration["Jwt:ExpiryInDays"]));
+            // JWT token oluşturuluyor
+            var token = new JwtSecurityToken(
+                claims: claims,
+                expires: expiry,
+                signingCredentials: creds
+            );
 
-        //             var token = new JwtSecurityToken(
-        //                 claims: claims,
-        //                 expires: expiry,
-        //                 signingCredentials: creds
-        //             );
+            // Token ve rol bilgisini içeren bir nesne döndürülüyor
+            return Ok(new 
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                role = isAdmin ? "admin" : "user"
+            });
+        }
+        else
+        {
+            return Unauthorized();
+        }
+    }
 
-        //             return Ok(new JwtSecurityTokenHandler().WriteToken(token));
-        //         }
-        //         else
-        //         {
-        //             return Unauthorized();
-        //         }
-        //     }
+    return BadRequest("Could not create token");
+}
 
-        //     return BadRequest("Could not create token");
-        // }
 
 
 
