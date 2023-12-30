@@ -44,6 +44,7 @@ public class FlightController : Controller
         ViewBag.NewFlight = _localization.Getkey("New Flight").Value;
         ViewBag.Seat = _localization.Getkey("Seat").Value;
         ViewBag.Choose = _localization.Getkey("Choose").Value;
+        ViewBag.SearchFlights = _localization.Getkey("Search Flights").Value;
 
 
         var currentCulture = Thread.CurrentThread.CurrentCulture.Name;
@@ -118,11 +119,25 @@ public class FlightController : Controller
         return View();
     }
 
+
     public async Task<IActionResult> SearchFlights(FlightViewModel model)
     {
+        if (!User.Identity.IsAuthenticated)
+        {
+            // TempData kullanarak bir sonraki request'e kadar veri saklayabilirsiniz.
+            TempData["Error"] = "You must be logged in to view this page.";
+            return RedirectToAction("Index");
+        }
+        if (string.IsNullOrWhiteSpace(model.Depart))
+        {
+            ModelState.AddModelError("", "Departure location cannot be empty.");
+            TempData["Error"] = "Departure location cannot be empty.";
+            return RedirectToAction("Index");
+        }
 
         if (ModelState.IsValid)
         {
+
 
             var query = _repository.Flights.AsQueryable();
 
